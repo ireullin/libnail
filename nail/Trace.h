@@ -4,7 +4,6 @@ It will assist developers tracing the code without gdb.
 
 Author: Ireul Lin
 Last update: 2014/01/30
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
 #ifndef __UITOXTRACE__
 #define __UITOXTRACE__

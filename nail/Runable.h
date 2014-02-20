@@ -4,7 +4,6 @@ Classes of Runable and RunableEx both derived from IRunable.
 
 Author: Ireul Lin
 Last update: 2014/02/02
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
 #ifndef __UITOXRUNABLE__
 #define __UITOXRUNABLE__

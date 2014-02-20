@@ -1,10 +1,9 @@
 /***************************************************************************************************************
-1. A header file include other header files in common use form STL, ubuntu system, UITOX library and so on....
+1. A header file include other header files in common use form STL, ubuntu system, nail library and so on....
 2. Dedfined some marcos for UITOX library.
 
 Author: Ireul Lin
 Last update: 2014/02/04
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
 #ifndef __UITOXPREHEADER__
 #define __UITOXPREHEADER__
@@ -88,7 +87,7 @@ Copyright is owned by UITOX.
 #include <list>
 #include <iomanip>
 
-// unbuntu
+// linux
 #include <unistd.h>
 #include <signal.h>
 #include <sys/shm.h>
@@ -97,22 +96,22 @@ Copyright is owned by UITOX.
 #include <pthread.h>
 #include <errno.h>
 
-// uitox
-#include "UitoxException.h"
-#include "UitoxTrace.h"
-#include "UitoxRunable.h"
-#include "UitoxSignal.h"
-#include "UitoxThread.h"
-#include "UitoxThreadBind.h"
-#include "UitoxMutex.h"
-#include "UitoxCondition.h"
-#include "UitoxDictionary.h"
-#include "UitoxSingleton.h"
-#include "UitoxSimplePool.h"
-#include "UitoxDateTimeFormat.h"
-#include "UitoxDateTime.h"
-#include "UitoxExtendItem.h"
-#include "UitoxStringPlus.h"
+// nail
+#include "nail/Exception.h"
+#include "nail/Trace.h"
+#include "nail/Runable.h"
+#include "nail/Signal.h"
+#include "nail/Thread.h"
+#include "nail/ThreadBind.h"
+#include "nail/Mutex.h"
+#include "nail/Condition.h"
+#include "nail/Dictionary.h"
+#include "nail/Singleton.h"
+#include "nail/SimplePool.h"
+#include "nail/DateTimeFormat.h"
+#include "nail/DateTime.h"
+#include "nail/ExtendItem.h"
+#include "nail/StringPlus.h"
 
 
 #endif
