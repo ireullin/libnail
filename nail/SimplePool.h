@@ -1,13 +1,17 @@
+/***************************************************************************************************************
+A simple thread pool, number of threads have to be assigned in creating and can't be modified till destoried.
+All of work will be push to a queue to wait handling.
+
+Author: Ireul Lin
+Last update: 2014/02/12
+Copyright is owned by UITOX.
+***************************************************************************************************************/
 #ifndef __UITOXSIMPLEPOOL__
 #define __UITOXSIMPLEPOOL__
 
 namespace Uitox{
 namespace Threading{
 
-/************************************************************************************************************
-a simple thread pool, number of threads have to be assigned in creating and can't be modified till destoried.
-all of work will be push to a queue to wait handling.
-************************************************************************************************************* */
 class SimplePool
 {
 private:

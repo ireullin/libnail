@@ -1,3 +1,10 @@
+/***************************************************************************************************************
+A date time class provide you to handle date and time.
+
+Author: Ireul Lin
+Last update: 2014/01/30
+Copyright is owned by UITOX.
+***************************************************************************************************************/
 #ifndef __UITOXDATETIME__
 #define __UITOXDATETIME__
 
@@ -162,7 +169,8 @@ public:
 	std::string toString()
 	{
 		char _acBuff[30];
-		sprintf( _acBuff, "%04d/%02d/%02d %02d:%02d:%02d.%03d\0", 
+		memset(&_acBuff[0], 0, sizeof(_acBuff));
+		sprintf( _acBuff, "%04d/%02d/%02d %02d:%02d:%02d.%03d", 
 			year(),
 			month(),
 			day(),

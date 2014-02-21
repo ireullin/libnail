@@ -1,9 +1,10 @@
 /***************************************************************************************************************
-1. A header file include other header files in common use form STL, ubuntu system, nail library and so on....
+1. A header file include other header files in common use form STL, ubuntu system, UITOX library and so on....
 2. Dedfined some marcos for UITOX library.
 
 Author: Ireul Lin
 Last update: 2014/02/04
+Copyright is owned by UITOX.
 ***************************************************************************************************************/
 #ifndef __UITOXPREHEADER__
 #define __UITOXPREHEADER__
@@ -12,13 +13,16 @@ Last update: 2014/02/04
 #define UITOX_EXPCEPTION_1(param)		Uitox::Exception(param, __FILE__, __LINE__);
 #define UITOX_EXPCEPTION_2(no, msg)		Uitox::Exception(no, msg, __FILE__, __LINE__);
 
+
 #ifndef AUTO_LOCK
 	#define AUTO_LOCK(a)				Uitox::Threading::AutoLock _autolock(a)
 #endif
 
+
 #ifndef DICTIONARY_FOREACH
 	#define DICTIONARY_FOREACH(a)		for(a.begin(); !a.end(); ++a)
 #endif
+
 
 #ifndef SAFE_DELETE
 	#define SAFE_DELETE(a)				if( (a) != NULL ) {delete (a); (a) = NULL;}
@@ -87,7 +91,7 @@ Last update: 2014/02/04
 #include <list>
 #include <iomanip>
 
-// linux
+// unbuntu
 #include <unistd.h>
 #include <signal.h>
 #include <sys/shm.h>
@@ -96,22 +100,21 @@ Last update: 2014/02/04
 #include <pthread.h>
 #include <errno.h>
 
-// nail
-#include "nail/Exception.h"
-#include "nail/Trace.h"
-#include "nail/Runable.h"
-#include "nail/Signal.h"
-#include "nail/Thread.h"
-#include "nail/ThreadBind.h"
-#include "nail/Mutex.h"
-#include "nail/Condition.h"
-#include "nail/Dictionary.h"
-#include "nail/Singleton.h"
-#include "nail/SimplePool.h"
-#include "nail/DateTimeFormat.h"
-#include "nail/DateTime.h"
-#include "nail/ExtendItem.h"
-#include "nail/StringPlus.h"
+// uitox
+#include "UitoxException.h"
+#include "UitoxTrace.h"
+#include "UitoxRunable.h"
+#include "UitoxSignal.h"
+#include "UitoxThread.h"
+#include "UitoxThreadBind.h"
+#include "UitoxMutex.h"
+#include "UitoxCondition.h"
+#include "UitoxDictionary.h"
+#include "UitoxSingleton.h"
+#include "UitoxSimplePool.h"
+#include "UitoxDateTimeFormat.h"
+#include "UitoxDateTime.h"
+#include "UitoxStringPlus.h"
 
 
 #endif

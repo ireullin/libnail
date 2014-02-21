@@ -1,3 +1,10 @@
+/***************************************************************************************************************
+Wrap APIs of condition variable to a class.
+
+Author: Ireul Lin
+Last update: 2014/02/12
+Copyright is owned by UITOX.
+***************************************************************************************************************/
 #ifndef __UITOXCONDITION__
 #define __UITOXCONDITION__
 

@@ -1,3 +1,10 @@
+/***************************************************************************************************************
+An abstract thread class, you shall override method run before using.
+
+Author: Ireul Lin
+Last update: 2014/02/12
+Copyright is owned by UITOX.
+***************************************************************************************************************/
 #ifndef __UITOXTHREAD__
 #define __UITOXTHREAD__
 
@@ -7,7 +14,6 @@ namespace Threading{
 extern void			sleep(double second);
 extern unsigned int currentThreadID();
 
-// an abstract class, you shall override method run before use.
 class Thread
 {
 private:

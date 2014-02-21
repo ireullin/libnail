@@ -3,6 +3,7 @@ An exception, which derived from std::exception, contains extra infomation as nu
 
 Author: Ireul Lin
 Last update: 2014/01/31
+Copyright is owned by UITOX.
 ***************************************************************************************************************/
 #ifndef __UITOXEXCEPTION__
 #define __UITOXEXCEPTION__
