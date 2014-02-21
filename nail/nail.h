@@ -89,7 +89,7 @@ Author: Ireul Lin
 #include <list>
 #include <iomanip>
 
-// developing os are unbuntu
+// developing os are unbuntu 12.04
 #include <unistd.h>
 #include <signal.h>
 #include <sys/shm.h>
@@ -101,6 +101,7 @@ Author: Ireul Lin
 // nail
 #include "Exception.h"
 #include "Trace.h"
+#include "ExtendItem.h"
 #include "Runable.h"
 #include "Signal.h"
 #include "Thread.h"
@@ -113,6 +114,7 @@ Author: Ireul Lin
 #include "DateTimeFormat.h"
 #include "DateTime.h"
 #include "StringPlus.h"
+
 
 
 #endif
