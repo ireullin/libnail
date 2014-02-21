@@ -7,7 +7,7 @@ Author: Ireul Lin
 #ifndef __NAILTHREADBIND__
 #define __NAILTHREADBIND__
 
-namespace Uitox{
+namespace nail{
 namespace Threading{
 
 class ThreadBind : public Thread

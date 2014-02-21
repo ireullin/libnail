@@ -6,7 +6,7 @@ Author: Ireul Lin
 #ifndef __NAILTHREAD__
 #define __NAILTHREAD__
 
-namespace Uitox{
+namespace nail{
 namespace Threading{
 
 extern void			sleep(double second);

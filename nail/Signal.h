@@ -7,8 +7,8 @@ Author: Ireul Lin
 #define __NAILSIGNAL__
 
 
-namespace Uitox
-{
+namespace nail{
+	
 class Signal
 {
 private:

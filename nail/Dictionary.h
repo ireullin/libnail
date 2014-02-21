@@ -7,8 +7,7 @@ Author: Ireul Lin
 #ifndef __NAILDICTIONARY__
 #define __MAILDICTIONARY__
 
-namespace Uitox{
-
+namespace nail{
 /**************************************************************************************************
 	Example:
 	Dictionary2<std::string,std::string> dic;

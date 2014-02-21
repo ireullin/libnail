@@ -8,8 +8,8 @@ Author: Ireul Lin
 #define __NAILTRACE__
 
 
-namespace Uitox
-{
+namespace nail{
+	
 class Trace
 {
 private:

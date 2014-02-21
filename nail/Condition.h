@@ -7,7 +7,7 @@ Author: Ireul Lin
 #define __NAILCONDITION__
 
 
-namespace Uitox{
+namespace nail{
 namespace Threading{
 
 
@@ -128,6 +128,6 @@ public:
 
 
 } // namespace Threading
-} // namespace Uitox
+} // namespace nail
 
 #endif

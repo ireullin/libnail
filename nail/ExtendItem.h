@@ -1,8 +1,7 @@
 #ifndef __NAILEXTENDITEM__
 #define __NAILEXTENDITEM__
 
-namespace Uitox
-{
+namespace nail{
 
 template <typename T>
 struct TypeWrapper 

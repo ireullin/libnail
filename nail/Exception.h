@@ -8,7 +8,8 @@ Author: Ireul Lin
 
 
 
-namespace Uitox{
+namespace nail{
+	
 class Exception : public std::exception
 {
 private:

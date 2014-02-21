@@ -7,7 +7,7 @@ Author: Ireul Lin
 #ifndef __NAILDATETIMEFORMAT__
 #define __MAILDATETIMEFORMAT__
 
-namespace Uitox{
+namespace nail{
 namespace TimeFormat{
 
 

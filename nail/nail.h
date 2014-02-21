@@ -8,12 +8,12 @@ Author: Ireul Lin
 #define __NAIL__
 
 
-#define NAIL_EXPCEPTION_1(param)		Uitox::Exception(param, __FILE__, __LINE__);
-#define MAIl_EXPCEPTION_2(no, msg)		Uitox::Exception(no, msg, __FILE__, __LINE__);
+#define NAIL_EXPCEPTION_1(param)		nail::Exception(param, __FILE__, __LINE__);
+#define MAIl_EXPCEPTION_2(no, msg)		nail::Exception(no, msg, __FILE__, __LINE__);
 
 
 #ifndef AUTO_LOCK
-	#define AUTO_LOCK(a)				Uitox::Threading::AutoLock _autolock(a)
+	#define AUTO_LOCK(a)				nail::Threading::AutoLock _autolock(a)
 #endif
 
 
@@ -45,10 +45,10 @@ Author: Ireul Lin
 
 	
 #ifdef NAIL_TRACE_ENABLE
-	#define TRACE_THIS_FUNCTION(x)	Uitox::UitoxTrace _uitoxtrace_(x, __FILE__,__FUNCTION__);
-	#define SHOW_POSITION			_uitoxtrace_.position(__LINE__)
-	#define SHOW_VALUES				_uitoxtrace_.line(__LINE__); _uitoxtrace_.show
-	#define SHOW_ERRORS				_uitoxtrace_.line(__LINE__); _uitoxtrace_.error
+	#define TRACE_THIS_FUNCTION(x)	nail::Trace _nailtrace_(x, __FILE__,__FUNCTION__);
+	#define SHOW_POSITION			_nailtrace_.position(__LINE__)
+	#define SHOW_VALUES				_nailtrace_.line(__LINE__); _nailtrace_.show
+	#define SHOW_ERRORS				_nailtrace_.line(__LINE__); _nailtrace_.error
 #else
 	#define TRACE_THIS_FUNCTION(x)	/* NAIL_TRACE_DISABLE */
 	#define SHOW_POSITION			/* NAIL_TRACE_DISABLE */

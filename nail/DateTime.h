@@ -6,8 +6,7 @@ Author: Ireul Lin
 #ifndef __NAILDATETIME__
 #define __NAILDATETIME__
 
-namespace Uitox
-{
+namespace nail{
 
 class DateTime;
 class DateTimeDiff

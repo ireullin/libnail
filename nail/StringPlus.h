@@ -8,9 +8,8 @@ Author: Ireul Lin
 #define __NAILSTRINGPLUS__
 
 
-namespace Uitox{
-namespace StringPlus
-{
+namespace nail{
+namespace StringPlus{
 
 	/// Remove "\r\n" or "\n" at a string's end.
 	std::string chomp(const std::string& value)

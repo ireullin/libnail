@@ -6,7 +6,7 @@ Author: Ireul Lin
 #ifndef __NAILMUTEX__
 #define __MAILMUTEX__
 
-namespace Uitox{
+namespace nail{
 namespace Threading{
 
 class Mutex
@@ -120,5 +120,5 @@ public:
 
 
 } // namespace Threading
-} // namespace Uitox
+} // namespace nail
 #endif

@@ -8,7 +8,7 @@ Author: Ireul Lin
 #ifndef __NAILRUNABLE__
 #define __NAILRUNABLE__
 
-namespace Uitox
+namespace nail
 {
 
 // an interface

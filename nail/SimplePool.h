@@ -7,7 +7,7 @@ Author: Ireul Lin
 #ifndef __NAILSIMPLEPOOL__
 #define __NAILSIMPLEPOOL__
 
-namespace Uitox{
+namespace nail{
 namespace Threading{
 
 class SimplePool
