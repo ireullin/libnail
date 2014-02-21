@@ -6,14 +6,14 @@ Author: Ireul Lin
 #ifndef __NAILSINGLETON__
 #define __NAILXSINGLETON__
 
-namespace Uitox{
+namespace nail{
 
 /****************************************************************
 	Example:
-	class Derive : public Uitox::Singleton<Derive>
+	class Derive : public nail::Singleton<Derive>
 	{
 	private:
-		friend class Uitox::Singleton<Derive>;	// declare that parent class to be friend class
+		friend class nail::Singleton<Derive>;	// declare that parent class to be friend class
 		Derive(){}								// declare all constructors in private
 		Derive(const Derive&);
 		Derive& operator= (const Derive&);

@@ -1,12 +1,11 @@
-#include "UitoxPreheader.h"
+#include "nail/nail.h"
 
-#include "MySQL.h"
 
 class dev
 {
 public:
 	char m_buff[10];
-	Uitox::ExtendItem<dev> m_item;
+	nail::ExtendItem<dev> m_item;
 
 	dev()
 	{
@@ -15,7 +14,7 @@ public:
 	}
 	
 
-	Uitox::IExtendItem& get()
+	nail::IExtendItem& get()
 	{
 		m_item.set( &m_buff[2]);
 		return m_item;
@@ -32,7 +31,7 @@ public:
 int trycatchmain(int argc, char** argv)
 {TRACE_THIS_FUNCTION(ON)
 	
-	MySQL::Connection _cn;
+	/*MySQL::Connection _cn;
 	_cn.connect("192.168.1.203","remote","letmedie","home");
 	// _cn.selectDB("lottery");
 
@@ -43,7 +42,7 @@ int trycatchmain(int argc, char** argv)
 		SHOW_VALUES("{%s} {%s}", _row["term"].toString().c_str(),  _row[3].toString().c_str() );
 	}
 
-	_cn.close();
+	_cn.close();*/
 
 	return 0;
 }
@@ -61,8 +60,8 @@ int main(int argc, char** argv)
 	{
 		SHOW_VALUES("MySQL::Exception{%s}", e.what());
 	}*/
-	catch(Uitox::Exception &e)
+	catch(nail::Exception &e)
 	{
-		SHOW_VALUES("Uitox::Exception{%s}", e.what());
+		SHOW_VALUES("nail::Exception{%s}", e.what());
 	}
 }

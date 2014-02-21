@@ -9,7 +9,7 @@ Author: Ireul Lin
 
 
 #define NAIL_EXPCEPTION_1(param)		nail::Exception(param, __FILE__, __LINE__);
-#define MAIl_EXPCEPTION_2(no, msg)		nail::Exception(no, msg, __FILE__, __LINE__);
+#define NAIL_EXPCEPTION_2(no, msg)		nail::Exception(no, msg, __FILE__, __LINE__);
 
 
 #ifndef AUTO_LOCK
@@ -98,20 +98,21 @@ Author: Ireul Lin
 #include <pthread.h>
 #include <errno.h>
 
-#include "nail/Exception.h"
-#include "nail/Trace.h"
-#include "nail/Runable.h"
-#include "nail/Signal.h"
-#include "nail/Thread.h"
-#include "nail/ThreadBind.h"
-#include "nail/Mutex.h"
-#include "nail/Condition.h"
-#include "nail/Dictionary.h"
-#include "nail/Singleton.h"
-#include "nail/SimplePool.h"
-#include "nail/DateTimeFormat.h"
-#include "nail/DateTime.h"
-#include "nail/StringPlus.h"
+// nail
+#include "Exception.h"
+#include "Trace.h"
+#include "Runable.h"
+#include "Signal.h"
+#include "Thread.h"
+#include "ThreadBind.h"
+#include "Mutex.h"
+#include "Condition.h"
+#include "Dictionary.h"
+#include "Singleton.h"
+#include "SimplePool.h"
+#include "DateTimeFormat.h"
+#include "DateTime.h"
+#include "StringPlus.h"
 
 
 #endif

@@ -1,6 +1,6 @@
 
 rm -rf ./dev
 clear
-g++ -o dev dev.cpp -lpthread -lrt -lmysqlclient -DUITOX_TRACE_ENABLE
+g++ -o dev dev.cpp -lpthread -lrt -lmysqlclient -DNAIL_TRACE_ENABLE
 ./dev
 

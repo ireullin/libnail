@@ -60,14 +60,14 @@ public:
 	virtual ~SimplePool()
 	{
 		if(m_threads.size()!=0)
-			throw UITOX_EXPCEPTION_1("the pool has not been released");
+			throw NAIL_EXPCEPTION_1("the pool has not been released");
 	}
 
 
 	void create(int threadCount)
 	{
 		if(m_threads.size()!=0)
-			throw UITOX_EXPCEPTION_1("the pool has been working");
+			throw NAIL_EXPCEPTION_1("the pool has been working");
 
 		m_continue = true;
 		for(int i=0; i<threadCount; i++)
@@ -114,5 +114,5 @@ public:
 };
 
 } // namespace Threading
-} // namespace Uitox
+} // namespace nail
 #endif

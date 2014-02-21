@@ -63,7 +63,7 @@ public:
 	Signal()
 	{
 		if(st_implemented)
-			throw UITOX_EXPCEPTION_1("class Signal has been implemented");
+			throw NAIL_EXPCEPTION_1("class Signal has been implemented");
 
 		st_implemented = true;
 	}

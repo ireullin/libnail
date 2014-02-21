@@ -130,7 +130,7 @@ namespace StringPlus{
 	std::string replace(const std::string& szSrc,const std::string& szOld,const std::string& szNew)
 	{
 		if(szNew.find(szOld)!=std::string::npos)
-			throw UITOX_EXPCEPTION_1("unlimited recurrence");
+			throw NAIL_EXPCEPTION_1("unlimited recurrence");
 
 		std::string _szBuff(szSrc);
 
@@ -218,7 +218,7 @@ namespace StringPlus{
 		InsensitiveCompare()
 		{
 			if(st_implemented)
-				throw UITOX_EXPCEPTION_1("class InsensitiveCompare has been implemented");
+				throw NAIL_EXPCEPTION_1("class InsensitiveCompare has been implemented");
 
 			st_implemented = true;
 		}

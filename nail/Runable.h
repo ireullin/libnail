@@ -8,8 +8,7 @@ Author: Ireul Lin
 #ifndef __NAILRUNABLE__
 #define __NAILRUNABLE__
 
-namespace nail
-{
+namespace nail{
 
 // an interface
 class IRunable
