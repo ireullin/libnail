@@ -3,11 +3,9 @@ Re-wrap the std::map to suppose you using easier.
 But you should use it carefully in muti-thread.
 
 Author: Ireul Lin
-Last update: 2014/01/30
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXDICTIONARY__
-#define __UITOXDICTIONARY__
+#ifndef __NAILDICTIONARY__
+#define __MAILDICTIONARY__
 
 namespace Uitox{
 

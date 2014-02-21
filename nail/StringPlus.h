@@ -3,11 +3,9 @@ There are lots of functions(or funtors) or clsses which can assist you to handle
 But some functions(or funtors) are not as efficient as operating std::string directly.
 
 Author: Ireul Lin
-Last update: 2014/02/12
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXSTRINGPLUS__
-#define __UITOXSTRINGPLUS__
+#ifndef __NAILSTRINGPLUS__
+#define __NAILSTRINGPLUS__
 
 
 namespace Uitox{

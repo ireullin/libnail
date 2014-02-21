@@ -2,11 +2,9 @@
 A date time class provide you to handle date and time.
 
 Author: Ireul Lin
-Last update: 2014/01/30
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXDATETIME__
-#define __UITOXDATETIME__
+#ifndef __NAILDATETIME__
+#define __NAILDATETIME__
 
 namespace Uitox
 {

@@ -1,5 +1,5 @@
-#ifndef __UITOXEXTENDITEM__
-#define __UITOXEXTENDITEM__
+#ifndef __NAILEXTENDITEM__
+#define __NAILEXTENDITEM__
 
 namespace Uitox
 {

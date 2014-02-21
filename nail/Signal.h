@@ -2,11 +2,9 @@
 Assist handling signals in unix-like OS.
 
 Author: Ireul Lin
-Last update: 2014/02/12
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXSIGNAL__
-#define __UITOXSIGNAL__
+#ifndef __NAILSIGNAL__
+#define __NAILSIGNAL__
 
 
 namespace Uitox

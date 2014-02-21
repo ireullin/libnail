@@ -2,11 +2,9 @@
 This class provides a singleton pattern for derived class.
 
 Author: Ireul Lin
-Last update: 2014/02/12
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXSINGLETON__
-#define __UITOXSINGLETON__
+#ifndef __NAILSINGLETON__
+#define __NAILXSINGLETON__
 
 namespace Uitox{
 

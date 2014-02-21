@@ -3,11 +3,9 @@ A thread class, which derived form Uitox::Threading::Thread,
 allows you running several threads in a class or running a thread without inheritance.
 
 Author: Ireul Lin
-Last update: 2014/02/12
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXTHREADBIND__
-#define __UITOXTHREADBIND__
+#ifndef __NAILTHREADBIND__
+#define __NAILTHREADBIND__
 
 namespace Uitox{
 namespace Threading{

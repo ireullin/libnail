@@ -2,11 +2,9 @@
 Wrap mutex APIs to a class.
 
 Author: Ireul Lin
-Last update: 2014/02/12
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXMUTEX__
-#define __UITOXMUTEX__
+#ifndef __NAILMUTEX__
+#define __MAILMUTEX__
 
 namespace Uitox{
 namespace Threading{

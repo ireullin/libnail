@@ -2,11 +2,9 @@
 An abstract thread class, you shall override method run before using.
 
 Author: Ireul Lin
-Last update: 2014/02/12
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXTHREAD__
-#define __UITOXTHREAD__
+#ifndef __NAILTHREAD__
+#define __NAILTHREAD__
 
 namespace Uitox{
 namespace Threading{

@@ -1,17 +1,15 @@
 /***************************************************************************************************************
-1. A header file include other header files in common use form STL, ubuntu system, UITOX library and so on....
-2. Dedfined some marcos for UITOX library.
+1. A header file include other header files in common use form STL, ubuntu system, nail library and so on....
+2. Dedfined some marcos for nail library.
 
 Author: Ireul Lin
-Last update: 2014/02/04
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXPREHEADER__
-#define __UITOXPREHEADER__
+#ifndef __NAIL__
+#define __NAIL__
 
 
-#define UITOX_EXPCEPTION_1(param)		Uitox::Exception(param, __FILE__, __LINE__);
-#define UITOX_EXPCEPTION_2(no, msg)		Uitox::Exception(no, msg, __FILE__, __LINE__);
+#define NAIL_EXPCEPTION_1(param)		Uitox::Exception(param, __FILE__, __LINE__);
+#define MAIl_EXPCEPTION_2(no, msg)		Uitox::Exception(no, msg, __FILE__, __LINE__);
 
 
 #ifndef AUTO_LOCK
@@ -46,14 +44,14 @@ Copyright is owned by UITOX.
 #endif
 
 	
-#ifdef UITOX_TRACE_ENABLE
+#ifdef NAIL_TRACE_ENABLE
 	#define TRACE_THIS_FUNCTION(x)	Uitox::UitoxTrace _uitoxtrace_(x, __FILE__,__FUNCTION__);
 	#define SHOW_POSITION			_uitoxtrace_.position(__LINE__)
 	#define SHOW_VALUES				_uitoxtrace_.line(__LINE__); _uitoxtrace_.show
 	#define SHOW_ERRORS				_uitoxtrace_.line(__LINE__); _uitoxtrace_.error
 #else
-	#define TRACE_THIS_FUNCTION(x)	/* UITOX_TRACE_DISABLE */
-	#define SHOW_POSITION			/* UITOX_TRACE_DISABLE */
+	#define TRACE_THIS_FUNCTION(x)	/* NAIL_TRACE_DISABLE */
+	#define SHOW_POSITION			/* NAIL_TRACE_DISABLE */
 	#define SHOW_VALUES				//
 	#define SHOW_ERRORS				//
 #endif
@@ -91,7 +89,7 @@ Copyright is owned by UITOX.
 #include <list>
 #include <iomanip>
 
-// unbuntu
+// developing os are unbuntu
 #include <unistd.h>
 #include <signal.h>
 #include <sys/shm.h>
@@ -100,21 +98,20 @@ Copyright is owned by UITOX.
 #include <pthread.h>
 #include <errno.h>
 
-// uitox
-#include "UitoxException.h"
-#include "UitoxTrace.h"
-#include "UitoxRunable.h"
-#include "UitoxSignal.h"
-#include "UitoxThread.h"
-#include "UitoxThreadBind.h"
-#include "UitoxMutex.h"
-#include "UitoxCondition.h"
-#include "UitoxDictionary.h"
-#include "UitoxSingleton.h"
-#include "UitoxSimplePool.h"
-#include "UitoxDateTimeFormat.h"
-#include "UitoxDateTime.h"
-#include "UitoxStringPlus.h"
+#include "nail/Exception.h"
+#include "nail/Trace.h"
+#include "nail/Runable.h"
+#include "nail/Signal.h"
+#include "nail/Thread.h"
+#include "nail/ThreadBind.h"
+#include "nail/Mutex.h"
+#include "nail/Condition.h"
+#include "nail/Dictionary.h"
+#include "nail/Singleton.h"
+#include "nail/SimplePool.h"
+#include "nail/DateTimeFormat.h"
+#include "nail/DateTime.h"
+#include "nail/StringPlus.h"
 
 
 #endif

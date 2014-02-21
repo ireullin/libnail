@@ -3,11 +3,9 @@ Provide for Uitox::DateTime::toString using.
 You can add new pattern if you need it.
 
 Author: Ireul Lin
-Last update: 2014/01/30
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXDATETIMEFORMAT__
-#define __UITOXDATETIMEFORMAT__
+#ifndef __NAILDATETIMEFORMAT__
+#define __MAILDATETIMEFORMAT__
 
 namespace Uitox{
 namespace TimeFormat{
