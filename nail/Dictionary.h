@@ -51,32 +51,33 @@ public:
 	{}
 
 
-	/// 新增一元素,不檢查是否存在
-	/// 新增已有元素,會覆蓋舊有元素
+	/// add a new element.
+	/// it will over overwrite old element.
 	void add(const K& key, const V& val)
 	{m_map.insert(PairType(key, val));}
 
 	
-	/// 移除該元素,不檢查是否存在
+	/// remove the element
+	/// it would throw an exception if the element hadn't existed.
 	void removeByKey(const K& key)
 	{m_map.erase(key);}
 
 
-	/// 是否包含這個key值
+	/// whether contain the key
 	bool containKey(const K& key)
 	{return m_map.find(key)!=m_map.end();}
 
 
-	/// 回傳該key對應的元素,不檢查是否存在
-	/// 存取不存在元素會造成空元素的存在,使用請小心
+	/// get the value by key
+	/// it would throw an exception if the element hadn't existed.
 	V& operator[](const K& key)
 	{return m_map[key];}
 	
 
-	/// 回傳該key對應的元素,檢查是否存在
+	/// val would be the value if returned true.
 	bool tryGet(const K& key, V& val)
 	{
-		if(!ContainKey(key))
+		if(!containKey(key))
 			return false;
 
 		val = m_map[key];
@@ -84,12 +85,12 @@ public:
 	}
 
 
-	/// 目前元素的數量
+	/// how many elements in this dictionary.
 	size_t size()
 	{return m_map.size();}
 
 
-	/// 清除所有資料
+	/// clear all elements.
 	void clear()
 	{m_map.clear();}
 

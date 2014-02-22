@@ -1,5 +1,22 @@
-#include "nail/nail.h"
+/****************************************************************************
 
+the program result
+
+Enter function main
+Enter function function1
+example_trace.cpp(7) is current position
+example_trace.cpp(8) shows "this is function1"
+Leave function function1
+example_trace.cpp(15) is current position
+example_trace.cpp(16) shows "this is function2"
+example_trace.cpp(35) error "here will assert"
+example: nail/Trace.h:119: void nail::Trace::error(const char*, ...): Assertion `false' failed.
+
+******************************************************************************/
+
+
+
+#include "nail/nail.h"
 
 // here will show function stack and which you would like to show.
 void function1()
@@ -15,6 +32,7 @@ void function2()
 	SHOW_POSITION;
 	SHOW_VALUES("this is %s", "function2");
 }
+
 
 // here will show nothing.
 void function3()
