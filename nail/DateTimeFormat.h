@@ -1,5 +1,5 @@
 /***************************************************************************************************************
-Provide for Uitox::DateTime::toString using.
+Provide for nail::DateTime::toString using.
 You can add new pattern if you need it.
 
 Author: Ireul Lin
