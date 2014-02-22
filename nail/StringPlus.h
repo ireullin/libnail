@@ -1,10 +1,15 @@
-#ifndef __UITOXSTRINGPLUS__
-#define __UITOXSTRINGPLUS__
+/***************************************************************************************************************
+There are lots of functions(or funtors) or clsses which can assist you to handle std::string conveniently.
+But some functions(or funtors) are not as efficient as operating std::string directly.
+
+Author: Ireul Lin
+***************************************************************************************************************/
+#ifndef __NAILSTRINGPLUS__
+#define __NAILSTRINGPLUS__
 
 
-namespace Uitox{
-namespace StringPlus
-{
+namespace nail{
+namespace StringPlus{
 
 	/// Remove "\r\n" or "\n" at a string's end.
 	std::string chomp(const std::string& value)
@@ -19,7 +24,7 @@ namespace StringPlus
 	std::string toPrintable(const std::string& value)
 	{
 		std::stringstream _ss;
-		for(int i=0; i<value.size(); i++)
+		for(size_t i=0; i<value.size(); i++)
 		{
 			if(isprint(value[i]))	_ss << value[i];
 			else					_ss << "\\x" << std::setfill('0') << std::setw(2) << std::setiosflags(std::ios::right) << std::hex << static_cast<int>(value[i]); 
@@ -83,7 +88,7 @@ namespace StringPlus
 		if(szParam[0]!=symbol)
 			return szParam;
 
-		int _end = szParam.find_first_not_of(symbol);
+		size_t _end = szParam.find_first_not_of(symbol);
 		if(_end==std::string::npos)	
 			_end=szParam.size();
 		
@@ -102,7 +107,7 @@ namespace StringPlus
 		if(szParam[szParam.size()-1]!=symbol)
 			return szParam;
 
-		int _str = szParam.find_last_not_of(symbol);
+		size_t _str = szParam.find_last_not_of(symbol);
 		if(_str==std::string::npos)	
 			_str=-1;
 
@@ -112,7 +117,7 @@ namespace StringPlus
 	}
 
 
-	/// Remove whole space chars.
+	/// Remove all space chars.
 	std::string trim(const std::string& szParam, char symbol=' ')
 	{
 		std::string _rc1 = trimLeft(szParam, symbol);
@@ -125,12 +130,12 @@ namespace StringPlus
 	std::string replace(const std::string& szSrc,const std::string& szOld,const std::string& szNew)
 	{
 		if(szNew.find(szOld)!=std::string::npos)
-			throw UITOX_EXPCEPTION_1("unlimited recurrence");
+			throw NAIL_EXPCEPTION_1("unlimited recurrence");
 
 		std::string _szBuff(szSrc);
 
 		int _oldLength	= szOld.size();
-		int _found		= _szBuff.find(szOld);
+		size_t _found	= _szBuff.find(szOld);
 
 		while( _found!=std::string::npos )
 		{
@@ -167,41 +172,32 @@ namespace StringPlus
 		Split(const Split& r);
 		Split& operator=(const Split& r);
 
-		typedef Uitox::ExtendItem<Split> ItemType;
-		std::vector<ItemType*> m_vec;
+		std::vector<std::string> m_vec;
 
 	public:
 		Split(const std::string& str, char symbol)
 		{
 			const char* _buff = str.c_str();
 			int _offset=0;
-			for(int i=0; i<str.size(); i++)
+			for(size_t i=0; i<str.size(); i++)
 			{
 				if(_buff[i]!=symbol)
 					continue;
 
-				ItemType* _item = new ItemType();
-				_item->set(&_buff[_offset],  i-_offset);
-				m_vec.push_back(_item);
+				std::string _str(&_buff[_offset],  i-_offset);
+				m_vec.push_back(_str);
 				_offset = i+1;
 			}
 
-			ItemType* _item = new ItemType();
-			_item->set(&_buff[_offset]);
-			m_vec.push_back(_item);
+			std::string _str(&_buff[_offset]);
+			m_vec.push_back(_str);
 		}
 
-		virtual ~Split()
-		{
-			for(int i=0; i<m_vec.size(); i++)
-				delete m_vec[i];
-		}
-
-		int size()
+		size_t size()
 		{return m_vec.size();}
 
-		Uitox::IExtendItem& operator[](int i)
-		{return (*m_vec[i]);}
+		std::string& operator[](int i)
+		{return m_vec[i];}
 	};
 
 
@@ -222,7 +218,7 @@ namespace StringPlus
 		InsensitiveCompare()
 		{
 			if(st_implemented)
-				throw UITOX_EXPCEPTION_1("class InsensitiveCompare has been implemented");
+				throw NAIL_EXPCEPTION_1("class InsensitiveCompare has been implemented");
 
 			st_implemented = true;
 		}

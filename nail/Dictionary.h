@@ -1,16 +1,31 @@
-#ifndef __UITOXDICTIONARY__
-#define __UITOXDICTIONARY__
+/***************************************************************************************************************
+Re-wrap the std::map to suppose you using easier.
+But you should use it carefully in muti-thread.
 
-namespace Uitox{
+Author: Ireul Lin
+***************************************************************************************************************/
+#ifndef __NAILDICTIONARY__
+#define __MAILDICTIONARY__
 
+namespace nail{
 /**************************************************************************************************
 	Example:
-	Dictionary2<std::string,std::string> _d;
-	for(_d.begin(); !_d.end(); ++_d)
+	Dictionary2<std::string,std::string> dic;
+	for(dic.begin(); !dic.end(); ++dic)
 	{
-		printf("key=%s value=%s", _d.key().c_str(), _d.value().c_str());	
-		_d.Remove();
+		printf("key=%s value=%s", dic.key().c_str(), dic.value().c_str());	
+		dic.Remove();
 	}
+
+	or
+
+	Dictionary2<std::string,std::string> dic;
+	DICTIONARY_FOREACH(dic)
+	{
+		printf("key=%s value=%s", dic.key().c_str(), dic.value().c_str());	
+		dic.Remove();
+	}
+
 ***************************************************************************************************/
 
 template <typename K, typename V>
@@ -70,7 +85,7 @@ public:
 
 
 	/// 目前元素的數量
-	int size()
+	size_t size()
 	{return m_map.size();}
 
 

@@ -1,7 +1,13 @@
-#ifndef __UITOXDATETIMEFORMAT__
-#define __UITOXDATETIMEFORMAT__
+/***************************************************************************************************************
+Provide for nail::DateTime::toString using.
+You can add new pattern if you need it.
 
-namespace Uitox{
+Author: Ireul Lin
+***************************************************************************************************************/
+#ifndef __NAILDATETIMEFORMAT__
+#define __MAILDATETIMEFORMAT__
+
+namespace nail{
 namespace TimeFormat{
 
 
@@ -12,7 +18,8 @@ struct EightNumDate
 	std::string operator()(int year, int month, int day, int hour, int minute, int second, int millisecond)
 	{
 		char _acBuff[20];
-		sprintf( _acBuff, "%04d%02d%02d\0", year, month, day);
+		memset(&_acBuff[0], 0, sizeof(_acBuff));
+		sprintf( _acBuff, "%04d%02d%02d", year, month, day);
 		std::string _szBuff = static_cast<std::string>(_acBuff);
 		return _szBuff;
 	}
@@ -28,7 +35,8 @@ struct SixNumTime
 	std::string operator()(int year, int month, int day, int hour, int minute, int second, int millisecond)
 	{
 		char _acBuff[20];
-		sprintf( _acBuff, "%02d%02d%02d\0", hour, minute, second);
+		memset(&_acBuff[0], 0, sizeof(_acBuff));
+		sprintf( _acBuff, "%02d%02d%02d", hour, minute, second);
 		std::string _szBuff = static_cast<std::string>(_acBuff);
 		return _szBuff;
 	}
@@ -44,7 +52,8 @@ struct NineNumTime
 	std::string operator()(int year, int month, int day, int hour, int minute, int second, int millisecond)
 	{
 		char _acBuff[20];
-		sprintf( _acBuff, "%02d%02d%02d%03d\0", hour, minute, second, millisecond);
+		memset(&_acBuff[0], 0, sizeof(_acBuff));
+		sprintf( _acBuff, "%02d%02d%02d%03d", hour, minute, second, millisecond);
 		std::string _szBuff = static_cast<std::string>(_acBuff);
 		return _szBuff;
 	}
@@ -59,7 +68,8 @@ struct StandardTime
 	std::string operator()(int year, int month, int day, int hour, int minute, int second, int millisecond)
 	{
 		char _acBuff[25];
-		sprintf( _acBuff, "%02d:%02d:%02d.%03d\0", hour, minute, second, millisecond);
+		memset(&_acBuff[0], 0, sizeof(_acBuff));
+		sprintf( _acBuff, "%02d:%02d:%02d.%03d", hour, minute, second, millisecond);
 		std::string _szBuff = static_cast<std::string>(_acBuff);
 		return _szBuff;
 	}
@@ -74,7 +84,8 @@ struct SeventeenNum
 	std::string operator()(int year, int month, int day, int hour, int minute, int second, int millisecond)
 	{
 		char _acBuff[25];
-		sprintf( _acBuff, "%04d%02d%02d%02d%02d%02d%03d\0", year, month, day, hour, minute, second, millisecond);
+		memset(&_acBuff[0], 0, sizeof(_acBuff));
+		sprintf( _acBuff, "%04d%02d%02d%02d%02d%02d%03d", year, month, day, hour, minute, second, millisecond);
 		std::string _szBuff = static_cast<std::string>(_acBuff);
 		return _szBuff;
 	}

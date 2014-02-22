@@ -1,13 +1,17 @@
-#ifndef __UITOXTHREAD__
-#define __UITOXTHREAD__
+/***************************************************************************************************************
+An abstract thread class, you shall override method run before using.
 
-namespace Uitox{
+Author: Ireul Lin
+***************************************************************************************************************/
+#ifndef __NAILTHREAD__
+#define __NAILTHREAD__
+
+namespace nail{
 namespace Threading{
 
 extern void			sleep(double second);
 extern unsigned int currentThreadID();
 
-// an abstract class, you shall override method run before use.
 class Thread
 {
 private:
@@ -23,10 +27,10 @@ private:
 	{
 		switch(error_no)
 		{
-		case EAGAIN:	throw UITOX_EXPCEPTION_2(error_no ,"The system lacked the necessary resources to create another thread, or the system-imposed limit on the total number of threads in a process PTHREAD_THREADS_MAX would be exceeded.");
-		case EINVAL:	throw UITOX_EXPCEPTION_2(error_no ,"The value specified by attr is invalid.");
-		case EPERM:		throw UITOX_EXPCEPTION_2(error_no ,"The caller does not have appropriate permission to set the required scheduling parameters or scheduling policy.");
-		default:		throw UITOX_EXPCEPTION_2(error_no ,"Unknown thread error.");
+		case EAGAIN:	throw NAIL_EXPCEPTION_2(error_no ,"The system lacked the necessary resources to create another thread, or the system-imposed limit on the total number of threads in a process PTHREAD_THREADS_MAX would be exceeded.");
+		case EINVAL:	throw NAIL_EXPCEPTION_2(error_no ,"The value specified by attr is invalid.");
+		case EPERM:		throw NAIL_EXPCEPTION_2(error_no ,"The caller does not have appropriate permission to set the required scheduling parameters or scheduling policy.");
+		default:		throw NAIL_EXPCEPTION_2(error_no ,"Unknown thread error.");
 		}
 	}
 
@@ -59,30 +63,30 @@ private:
 
 		try
 		{
-			_thread->m_id = Uitox::Threading::currentThreadID();
+			_thread->m_id = nail::Threading::currentThreadID();
 			_thread->run(_thread->m_param);
 		}
 		catch(std::exception& exp)
 		{
-			std::cout << "Thread " << Uitox::Threading::currentThreadID() << " threw an exception \"" << exp.what() << "\"" << std::endl;
+			std::cout << "Thread " << nail::Threading::currentThreadID() << " threw an exception \"" << exp.what() << "\"" << std::endl;
 			//signal();
 			assert(false);
 		}
 		catch(const char* errMsg)
 		{
-			std::cout << "Thread " << Uitox::Threading::currentThreadID() << " threw an exception \"" << errMsg << "\"" << std::endl;
+			std::cout << "Thread " << nail::Threading::currentThreadID() << " threw an exception \"" << errMsg << "\"" << std::endl;
 			//signal();
 			assert(false);
 		}
 		catch(const std::string& errMsg)
 		{
-			std::cout << "Thread " << Uitox::Threading::currentThreadID() << " threw an exception \"" << errMsg << "\"" << std::endl;
+			std::cout << "Thread " << nail::Threading::currentThreadID() << " threw an exception \"" << errMsg << "\"" << std::endl;
 			//signal();
 			assert(false);
 		}
 		catch(...)
 		{
-			std::cout << "Thread " << Uitox::Threading::currentThreadID() << " threw an unknown exception." << std::endl;
+			std::cout << "Thread " << nail::Threading::currentThreadID() << " threw an unknown exception." << std::endl;
 			//signal();
 			assert(false);
 		}
@@ -107,7 +111,7 @@ public:
 	{
 		if(this->isRunning())
 		{
-			throw UITOX_EXPCEPTION_1("Memory was be deleted before the thread finished.");
+			throw NAIL_EXPCEPTION_1("Memory was be deleted before the thread finished.");
 		}
 
 		this->release();
@@ -126,9 +130,9 @@ public:
 
 	void join()
 	{
-		if(m_id==Uitox::Threading::currentThreadID())
+		if(m_id==nail::Threading::currentThreadID())
 		{
-			throw UITOX_EXPCEPTION_1("Can not be joined by self.");
+			throw NAIL_EXPCEPTION_1("Can not be joined by self.");
 		}
 		
 		int _rc = pthread_join(m_handle, NULL );
@@ -151,7 +155,7 @@ public:
 	{return m_id!=0;}
 
 	void sleep(double second)
-	{Uitox::Threading::sleep(second);}
+	{nail::Threading::sleep(second);}
 };
 
 
@@ -167,6 +171,6 @@ unsigned int currentThreadID()
 }
 
 }//namespace Threading
-}//namespace Uitox
+}//namespace nail
 
 #endif

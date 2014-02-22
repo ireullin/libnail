@@ -1,8 +1,13 @@
-#ifndef __UITOXCONDITION__
-#define __UITOXCONDITION__
+/***************************************************************************************************************
+Wrap APIs of condition variable to a class.
+
+Author: Ireul Lin
+***************************************************************************************************************/
+#ifndef __NAILONDITION__
+#define __NAILCONDITION__
 
 
-namespace Uitox{
+namespace nail{
 namespace Threading{
 
 
@@ -19,13 +24,13 @@ private:
 	{
 		switch(error_no)
 		{
-		case EAGAIN:	throw UITOX_EXPCEPTION_2(error_no, "The system lacked the necessary resources (other than memory) to initialise another mutex.");
-		case ENOMEM:	throw UITOX_EXPCEPTION_2(error_no, "Insufficient memory exists to initialise the mutex.");
-		case EPERM:		throw UITOX_EXPCEPTION_2(error_no, "The caller does not have the privilege to perform the operation."); 
-		case EBUSY:		throw UITOX_EXPCEPTION_2(error_no, "The implementation has detected an attempt to re-initialise the object referenced by mutex, a previously initialised, but not yet destroyed, mutex.");
-		//case EBUSY:	throw UITOX_EXPCEPTION_2(error_no, "The implementation has detected an attempt to destroy the object referenced by mutex while it is locked or referenced (for example, while being used in a pthread_cond_wait() or pthread_cond_timedwait()) by another thread."); 
-		case EINVAL:	throw UITOX_EXPCEPTION_2(error_no, "The value specified by mutex is invalid.");
-		default:		throw UITOX_EXPCEPTION_2(error_no, "Unknown returned value.");
+		case EAGAIN:	throw NAIL_EXPCEPTION_2(error_no, "The system lacked the necessary resources (other than memory) to initialise another mutex.");
+		case ENOMEM:	throw NAIL_EXPCEPTION_2(error_no, "Insufficient memory exists to initialise the mutex.");
+		case EPERM:		throw NAIL_EXPCEPTION_2(error_no, "The caller does not have the privilege to perform the operation."); 
+		case EBUSY:		throw NAIL_EXPCEPTION_2(error_no, "The implementation has detected an attempt to re-initialise the object referenced by mutex, a previously initialised, but not yet destroyed, mutex.");
+		//case EBUSY:	throw NAIL_EXPCEPTION_2(error_no, "The implementation has detected an attempt to destroy the object referenced by mutex while it is locked or referenced (for example, while being used in a pthread_cond_wait() or pthread_cond_timedwait()) by another thread."); 
+		case EINVAL:	throw NAIL_EXPCEPTION_2(error_no, "The value specified by mutex is invalid.");
+		default:		throw NAIL_EXPCEPTION_2(error_no, "Unknown returned value.");
 		}
 	}
 
@@ -123,6 +128,6 @@ public:
 
 
 } // namespace Threading
-} // namespace Uitox
+} // namespace nail
 
 #endif

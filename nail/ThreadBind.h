@@ -1,7 +1,13 @@
-#ifndef __UITOXTHREADBIND__
-#define __UITOXTHREADBIND__
+/***************************************************************************************************************
+A thread class, which derived form nail::Threading::Thread, 
+allows you running several threads in a class or running a thread without inheritance.
 
-namespace Uitox{
+Author: Ireul Lin
+***************************************************************************************************************/
+#ifndef __NAILTHREADBIND__
+#define __NAILTHREADBIND__
+
+namespace nail{
 namespace Threading{
 
 class ThreadBind : public Thread
@@ -11,7 +17,7 @@ private:
 	ThreadBind(const ThreadBind&);
 	ThreadBind& operator= (const ThreadBind&);
 
-	Uitox::IRunable* m_pRunable;
+	nail::IRunable* m_pRunable;
 
 
 protected:
@@ -19,7 +25,7 @@ protected:
 	{
 		if(m_pRunable==NULL)
 		{
-			throw UITOX_EXPCEPTION_1("Runable can't be empty.");
+			throw NAIL_EXPCEPTION_1("Runable can't be empty.");
 		}
 
 
@@ -40,11 +46,11 @@ public:
 
 	virtual void start(void* param=NULL)
 	{
-		throw UITOX_EXPCEPTION_1("This method has been denied, please call another method void start(Uitox::IRunable* pRunable)");
+		throw NAIL_EXPCEPTION_1("This method has been denied, please call another method void start(nail::IRunable* pRunable)");
 	}
 
 
-	void start(Uitox::IRunable* pRunable)
+	void start(nail::IRunable* pRunable)
 	{
 		SAFE_DELETE(m_pRunable);
 		m_pRunable = pRunable;

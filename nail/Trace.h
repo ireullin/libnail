@@ -3,20 +3,18 @@ A class which are able to show stack of methods and position of executing.
 It will assist developers tracing the code without gdb.
 
 Author: Ireul Lin
-Last update: 2014/01/30
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXTRACE__
-#define __UITOXTRACE__
+#ifndef __NAILTRACE__
+#define __NAILTRACE__
 
 
-namespace Uitox
-{
-class UitoxTrace
+namespace nail{
+	
+class Trace
 {
 private:
-	UitoxTrace(const UitoxTrace&);
-	UitoxTrace& operator= (const UitoxTrace&);
+	Trace(const Trace&);
+	Trace& operator= (const Trace&);
 
 	int			m_showType;
 	std::string m_szFile;
@@ -42,7 +40,7 @@ private:
 
 
 public:
-	UitoxTrace(int showType, const std::string& szFile, const std::string& szFunction)
+	Trace(int showType, const std::string& szFile, const std::string& szFunction)
 		:m_showType(showType),m_szFile(szFile),m_szFunction(szFunction),m_line(0)
 	{
 		if(m_showType!=ON)
@@ -55,7 +53,7 @@ public:
 	}
 
 
-	~UitoxTrace()
+	~Trace()
 	{
 		if(m_showType!=ON)
 			return;

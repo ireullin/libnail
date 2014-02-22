@@ -1,8 +1,12 @@
-#ifndef __UITOXDATETIME__
-#define __UITOXDATETIME__
+/***************************************************************************************************************
+A date time class provide you to handle date and time.
 
-namespace Uitox
-{
+Author: Ireul Lin
+***************************************************************************************************************/
+#ifndef __NAILDATETIME__
+#define __NAILDATETIME__
+
+namespace nail{
 
 class DateTime;
 class DateTimeDiff
@@ -162,7 +166,8 @@ public:
 	std::string toString()
 	{
 		char _acBuff[30];
-		sprintf( _acBuff, "%04d/%02d/%02d %02d:%02d:%02d.%03d\0", 
+		memset(&_acBuff[0], 0, sizeof(_acBuff));
+		sprintf( _acBuff, "%04d/%02d/%02d %02d:%02d:%02d.%03d", 
 			year(),
 			month(),
 			day(),

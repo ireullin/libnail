@@ -1,16 +1,14 @@
 /***************************************************************************************************************
-Classes of Runable and RunableEx both derived from IRunable.
-
+1. All classes of RunableN derived IRunable.
+2. Wrap all kind of methods allows you runing any methods 
+   in anywhere without limited with the method whether static.
 
 Author: Ireul Lin
-Last update: 2014/02/02
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXRUNABLE__
-#define __UITOXRUNABLE__
+#ifndef __NAILRUNABLE__
+#define __NAILRUNABLE__
 
-namespace Uitox
-{
+namespace nail{
 
 // an interface
 class IRunable

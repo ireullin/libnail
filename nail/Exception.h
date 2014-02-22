@@ -2,15 +2,14 @@
 An exception, which derived from std::exception, contains extra infomation as number of line, file name and so on...
 
 Author: Ireul Lin
-Last update: 2014/01/31
-Copyright is owned by UITOX.
 ***************************************************************************************************************/
-#ifndef __UITOXEXCEPTION__
-#define __UITOXEXCEPTION__
+#ifndef __NAILEXCEPTION__
+#define __NAILEXCEPTION__
 
 
 
-namespace Uitox{
+namespace nail{
+	
 class Exception : public std::exception
 {
 private:
