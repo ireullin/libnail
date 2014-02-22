@@ -1,0 +1,46 @@
+#include "nail/nail.h"
+
+int main(int argc, char** argv)
+{TRACE_THIS_FUNCTION(ON)
+
+	try
+	{
+		// default is -1 if error NO doesn't be assigned.
+		throw NAIL_EXPCEPTION_1("message 1");
+	}
+	catch(nail::Exception& e)
+	{
+		SHOW_VALUES("no=%d message=%s", e.no(), e.message().c_str() );
+		SHOW_VALUES("occur in %s line %d", e.file().c_str(), e.line() );
+		SHOW_VALUES("%s", e.what() );
+	}
+
+
+
+	try
+	{
+		// you can assign error NO.
+		throw NAIL_EXPCEPTION_2(500, "message 2");
+	}
+	catch(nail::Exception& e)
+	{
+		SHOW_VALUES("no=%d message=%s", e.no(), e.message().c_str() );
+		SHOW_VALUES("occur in %s line %d", e.file().c_str(), e.line() );
+		SHOW_VALUES("%s", e.what() );
+	}
+
+
+
+	try
+	{
+		throw NAIL_EXPCEPTION_1("message 3");
+	}
+	catch(std::exception& e)
+	{
+		// nail::Exception can be catch by std::exception.
+		SHOW_VALUES("%s", e.what() );
+	}
+
+
+	return 0;
+}
