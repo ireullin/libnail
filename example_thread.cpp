@@ -1,23 +1,7 @@
-/*********************************************************************************
-
-the program result
-
-Enter function main
-example_exception.cpp(13) shows "no=-1 message=message 1"
-example_exception.cpp(14) shows "occur in example_exception.cpp line 9"
-example_exception.cpp(15) shows "example_exception.cpp(9) msg:(-1)message 1"
-example_exception.cpp(27) shows "no=500 message=message 2"
-example_exception.cpp(28) shows "occur in example_exception.cpp line 23"
-example_exception.cpp(29) shows "example_exception.cpp(23) msg:(500)message 2"
-example_exception.cpp(41) shows "example_exception.cpp(36) msg:(-1)message 3"
-Leave function main
-
-*********************************************************************************/
-
-
-
 #include "nail/nail.h"
 
+
+// a class inherit nail::Threading::Thread
 class DerivedThread : public nail::Threading::Thread
 {
 protected:
@@ -33,7 +17,7 @@ protected:
 };
 
 
-
+// a global method
 void* fun1(void* sender, void* param)
 {TRACE_THIS_FUNCTION(ON)
 	
@@ -51,6 +35,7 @@ void* fun1(void* sender, void* param)
 class Foo
 {
 public:
+	// a static method
 	static void* fun2(void* sender, void* param)
 	{TRACE_THIS_FUNCTION(ON)
 	
@@ -64,6 +49,7 @@ public:
 	}
 
 
+	// a memeber method
 	void* fun3(void* sender, void* param)
 	{TRACE_THIS_FUNCTION(ON)
 	
@@ -79,6 +65,7 @@ public:
 
 
 
+// a funtor(function object)
 struct Funtor
 {
 	void* operator()(void* sender, void* param)
