@@ -33,7 +33,7 @@ protected:
 	Singleton(){}
 
 public:
-	static T& Instance()
+	static T& instance()
 	{
 		st_mutex.lock();
 		if(st_ptr.get()==NULL)st_ptr.reset(new T);
