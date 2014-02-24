@@ -113,7 +113,7 @@ public:
 
 
 	template<typename T>
-	void invokeRange(T t)
+	void invokeRange(T& t)
 	{
 		m_mutex.lock();
 		
