@@ -111,6 +111,19 @@ public:
 		m_condition.broadcast();
 	}
 
+
+	template<typename T>
+	void invokeRange(T t)
+	{
+		m_mutex.lock();
+		
+		for (typename T::iterator it = t.begin(); it!=t.end(); ++it)
+			m_queue.push( (*it) );
+		
+		m_mutex.unlock();
+		m_condition.broadcast();
+	}
+
 };
 
 } // namespace Threading

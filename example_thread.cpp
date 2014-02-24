@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 
 	Foo _foo;	
 	std::vector<nail::Threading::Thread*> _v;
-	
+
 	// a class inherit nail::Threading::Thread
 	DerivedThread* _derivedThread = new DerivedThread();
 	_derivedThread->start();
@@ -126,7 +126,35 @@ int main(int argc, char** argv)
 		_v[i]->join();
 		SAFE_DELETE( _v[i] );
 	}
+	
 
+	///
+	/// an example for thread pool
+	///
+	nail::Threading::SimplePool _threadpool;
+	_threadpool.create(2); // assign number of thread which you would like to start up.
+	SHOW_VALUES( "this pool contains %d threads", _threadpool.threadCount() );
+
+	// you can pass any sequential container to invokeRange.
+	std::deque<nail::IRunable*> _runables;
+	//std::vector<nail::IRunable*> _runables;
+	//std::list<nail::IRunable*> _runables;
+	_runables.push_back( new nail::Runable1(&fun1) );
+	_runables.push_back( new nail::Runable1(&Foo::fun2) );
+	_runables.push_back( new nail::Runable2<Foo>(&_foo,&Foo::fun3) );
+	_threadpool.invokeRange( _runables );
+
+
+	// or just invoke one
+	_threadpool.invoke( new nail::Runable3<Funtor>(&funtor) );
+
+
+	while( _threadpool.workCount()!=0 )
+	{
+		nail::Threading::sleep(0.5);
+	}
+
+	_threadpool.destory();
 
 	return 0;
 }
