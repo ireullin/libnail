@@ -70,11 +70,11 @@ public:
 	
 	virtual ~JsonNode(){}
 
-	template< typename T >
+	/*template< typename T >
 	virtual JsonNode& child(const T& key)=0;
 
 	template< typename T >
-	virtual std::string get(const T& key)=0;
+	virtual std::string get(const T& key)=0;*/
 };
 
 
@@ -106,7 +106,7 @@ public:
 			_offset++;
 			std::string _val = super::find(content, _offset, ',');
 			
-			//SHOW_VALUES("ley=%s val=%s", _key.c_str(), _val.c_str());
+			SHOW_VALUES("ley=%s val=%s", _key.c_str(), _val.c_str());
 			m_map.insert(JSONPair(_key, _val));
 
 		}while(_offset!=std::string::npos);
@@ -118,6 +118,7 @@ public:
 		SAFE_DELETE(m_child);
 	}
 
+	/*
 	template< typename T >
 	virtual JsonNode& child(const T& key)
 	{
@@ -137,12 +138,13 @@ public:
 		return (*m_child);
 	}
 
+
 	template< typename T >
 	std::string get(const T& key)
 	{
 		return m_map[key];
 	}
-
+	*/
 
 };
 
