@@ -88,6 +88,7 @@ Author: Ireul Lin
 #include <tr1/memory>
 #include <list>
 #include <iomanip>
+#include <stack>
 
 // developing os are unbuntu 12.04
 #include <unistd.h>
@@ -114,7 +115,7 @@ Author: Ireul Lin
 #include "DateTimeFormat.h"
 #include "DateTime.h"
 #include "StringPlus.h"
-
+#include "Json.h"
 
 
 #endif
