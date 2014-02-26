@@ -195,7 +195,7 @@ public:
 			for(JSONMap::iterator it=m_map->begin(); it!=m_map->end(); ++it)
 			{
 				JsonNode* _node = it->second;
-    			_ss << it->first << ":" << _node->toString() << ",";
+    			_ss << '"' << it->first << "\":" << _node->toString() << ",";
     		}
 
     		std::string _rc = _ss.str();
