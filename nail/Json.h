@@ -165,77 +165,122 @@ public:
 		int _length = data.size();
 		const char* _c = data.c_str();
 		std::stack<JsonNode*> _stack;
+		//_stack.push(&node);
 		
 		int _b=0;
-		std::string _key, _val;
-		JsonNode* _node = NULL;
 
 
 		for(int i=0; i<_length; i++)
 		{
+			//SHOW_VALUES("stack=%d", _stack.size());
+
 			if(_c[i]=='{')
 			{
-				if(_node!=NULL)
-					_stack.push(_node);
+				if(i==0)
+					_stack.push(&node);
+				else
+					_stack.push( new JsonNode() );
 
-				_node = new JsonNode();
-				_node->m_map = new JsonNode::JSONMap();
-				_node->m_type = 1;
-				_b=i+1;
-
-				if( _stack.top().m_type==1 )
-					_stack.top()->m_map.
-
-
-				continue;
-			}
-
-			if(_c[i]=='[')
-			{
-				if(_node!=NULL)
-					_stack.push(_node);
-
-				_node = new JsonNode();
-				_node->m_array = new JsonNode::JSONArray();
-				_node->m_type = 2;
+				_stack.top()->m_map = new JsonNode::JSONMap();
+				_stack.top()->m_type = 1;
 				_b=i+1;
 				continue;
 			}
 
 			
 			// 問題在於 key 產生出來之後如果value又是一個hash 會把之前的key蓋掉
-			if( _node->m_type==1 && _c[i]==':' )
+			if( _stack.top()->m_type==1 && _c[i]==':' )
 			{
-				_key = std::string( &_c[_b], i-_b);
+				std::string _key( &_c[_b], i-_b);
+				JsonNode* _node = new JsonNode();
+				_stack.top()->m_map->insert( JsonNode::JSONPair(_key, _node) );
+
+				_stack.push(_node);
+				_stack.top()->m_type = 3;
+
 				_b = i+1;
 				continue;
 			}
+
 
 			if( _stack.top()->m_type==1 && _c[i]==',' )
 			{
-				_val = std::string( &_c[_b], i-_b);
+				std::string _val( &_c[_b], i-_b);
+				
+				_stack.top()->m_content = _val;
+				_stack.pop();
+
 				_b = i+1;
 				continue;
 			}
+
+
+			if(_c[i]=='}')
+			{
+				std::string _val( &_c[_b], i-_b);
+				
+				_stack.top()->m_content = _val;
+				_stack.pop();
+
+				_stack.pop();
+
+				_b = i+1;
+				continue;
+			}
+
+
+
+			if(_c[i]=='[')
+			{
+				if(i==0)
+					_stack.push(&node);
+				else
+					_stack.push( new JsonNode() );
+
+				_stack.top()->m_array = new JsonNode::JSONArray();
+				_stack.top()->m_type = 2;
+				_b=i+1;
+				continue;
+			}
+
 
 			if( _stack.top()->m_type==2 && _c[i]==',' )
 			{
-				_val = std::string( &_c[_b], i-_b);
+				std::string _val( &_c[_b], i-_b);
+				JsonNode* _node = new JsonNode();
+				_stack.top()->m_array->push_back( _node );
+
+				_stack.push(_node);
+				_stack.top()->m_type = 3;
+				_stack.top()->m_content = _val;
+				_stack.pop();
+
 				_b = i+1;
 				continue;
 			}
 
 
-
-			if(_c[i]=='}'|| _c[i]==']')
+			if(_c[i]==']')
 			{
+				std::string _val( &_c[_b], i-_b);
+				JsonNode* _node = new JsonNode();
+				_stack.top()->m_array->push_back( _node );
+
+				_stack.push(_node);
+				_stack.top()->m_type = 3;
+				_stack.top()->m_content = _val;
 				_stack.pop();
+
+				_stack.pop();
+
+				_b = i+1;
 				continue;
 			}
+
 		}
 
-
-
+		SHOW_VALUES("stack=%d", _stack.size());
+		
 	}
 
 
