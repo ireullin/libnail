@@ -22,9 +22,10 @@ int main(int argc, char** argv)
 	nail::JsonNode _jh( _json );
 
 
-	SHOW_VALUES("%s", _jh.get("B").c_str() );
-	SHOW_VALUES("%s", _jh.child("C").get("c1").c_str()  );
-	SHOW_VALUES("%s", _jh.child("E").get(1).c_str()  );
+	SHOW_VALUES("%s", _jh["B"].toString().c_str() );
+	SHOW_VALUES("%s", _jh["C"]["c1"].toString().c_str()  );
+	SHOW_VALUES("%s", _jh["E"][1].toString().c_str()  );
+	SHOW_VALUES("%s", _jh.toString().c_str()  );
 
 	return 0;
 }

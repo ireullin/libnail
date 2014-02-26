@@ -7,9 +7,9 @@ namespace nail{
 class JsonNode
 {
 private:
-	typedef std::map<std::string, std::string>	JSONMap;
-	typedef std::pair<std::string, std::string>	JSONPair;
-	typedef std::vector<std::string>			JSONArray;
+	typedef std::map<std::string, JsonNode*>	JSONMap;
+	typedef std::pair<std::string, JsonNode*>	JSONPair;
+	typedef std::vector<JsonNode*>				JSONArray;
 
 	JsonNode(const JsonNode&);
 	JsonNode& operator= (const JsonNode&);
@@ -18,7 +18,6 @@ private:
 
 	JSONMap*	m_map;
 	JSONArray*	m_array;
-	JsonNode*	m_child;
 	std::string m_content;
 	
 
@@ -100,8 +99,12 @@ private:
 			_offset++;
 			std::string _val = find(content, _offset, ',');
 			
-			SHOW_VALUES("key=%s val=%s", _key.substr(1,_key.size()-2).c_str(), _val.c_str());
-			m_map->insert(JSONPair( _key.substr(1,_key.size()-2)  , _val));
+			m_map->insert(
+				JSONPair(
+					_key.substr(1,_key.size()-2),
+					 new JsonNode( _val )
+					 )
+				);
 
 		}while(_offset!=std::string::npos);
 	}
@@ -117,9 +120,7 @@ private:
 		{
 			_offset++;
 			std::string _val = find(content, _offset, ',');
-			
-			SHOW_VALUES("val=%s", _val.c_str());
-			m_array->push_back( _val );
+			m_array->push_back( new JsonNode( _val ) );
 
 		}while(_offset!=std::string::npos);
 	}
@@ -128,58 +129,97 @@ private:
 public:
 
 	JsonNode(const std::string& content)
-		:m_map(NULL),m_array(NULL),m_child(NULL)
+		:m_map(NULL),m_array(NULL)
 	{TRACE_THIS_FUNCTION(ONLY_SHOW)
 
+		// to do:
+		// check the rule
 		if(content[0]=='{' && content[content.size()-1]=='}')
 			hashType( content.substr(1, content.size()-2) );
 		else if(content[0]=='[' && content[content.size()-1]==']')
 			arrayType( content.substr(1, content.size()-2) );
 		else
+			m_content = content;
+	}
+
+
+	virtual ~JsonNode()
+	{TRACE_THIS_FUNCTION(ON)
+
+		if(m_map!=NULL)
 		{
-			//m_content = content;
-			SHOW_VALUES("%s", content.c_str());
-			throw NAIL_EXPCEPTION_1("JSON format error");
+			for(JSONMap::iterator it=m_map->begin(); it!=m_map->end(); ++it)
+			{
+				JsonNode* _node = it->second;
+    			delete _node;
+    		}
+
+    		delete m_map;
+		}
+
+		if(m_array!=NULL)
+		{
+			for(JSONArray::iterator it=m_array->begin(); it!=m_array->end(); ++it)
+			{
+    			JsonNode* _node = (*it);
+    			delete _node;
+    		}
+
+    		delete m_array;
 		}
 	}
 
-	virtual ~JsonNode()
+
+	JsonNode& operator[](const std::string& key)
 	{
-		SAFE_DELETE(m_child);
-		SAFE_DELETE(m_map);
-		SAFE_DELETE(m_array);
+		return (*(*m_map)[key]);
 	}
 
 
-	JsonNode& child(const std::string& key)
+	JsonNode& operator[](int key)
 	{
-		SAFE_DELETE(m_child);
-
-		std::string _content = (*m_map)[key];
-		m_child = new JsonNode( _content );
-		return (*m_child);
+		return (*(*m_array)[key]);
 	}
 
 
-	JsonNode& child(int key)
+	std::string toString()
 	{
-		SAFE_DELETE(m_child);
+		if( !m_content.empty() )
+			return m_content;
+		
+		
+		if(m_map!=NULL)
+		{
+			std::stringstream _ss;
+			_ss << "{";
+			for(JSONMap::iterator it=m_map->begin(); it!=m_map->end(); ++it)
+			{
+				JsonNode* _node = it->second;
+    			_ss << it->first << ":" << _node->toString() << ",";
+    		}
 
-		std::string _content = (*m_array)[key];
-		m_child = new JsonNode( _content );
-		return (*m_child);
-	}
+    		std::string _rc = _ss.str();
+    		_rc[ _rc.size()-1 ] = '}';
+    		return _rc;
+		}
 
 
-	std::string get(const std::string& key)
-	{TRACE_THIS_FUNCTION(ON)
-		return (*m_map)[key];
-	}
+		if(m_array!=NULL)
+		{
+			std::stringstream _ss;
+			_ss << "[";
+			for(JSONArray::iterator it=m_array->begin(); it!=m_array->end(); ++it)
+			{
+				JsonNode* _node = (*it);
+    			_ss << _node->toString() << ",";
+    		}
 
+    		std::string _rc = _ss.str();
+    		_rc[ _rc.size()-1 ] = ']';
+    		return _rc;
+		}
 
-	std::string get(int key)
-	{
-		return (*m_array)[key];
+		return "";
 	}
 };
 
