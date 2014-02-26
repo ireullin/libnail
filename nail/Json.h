@@ -103,7 +103,7 @@ private:
 				JSONPair(
 					_key.substr(1,_key.size()-2),
 					 new JsonNode( _val )
-					 )
+					)
 				);
 
 		}while(_offset!=std::string::npos);
@@ -134,17 +134,40 @@ public:
 
 		// to do:
 		// check the rule
-		if(content[0]=='{' && content[content.size()-1]=='}')
-			hashType( content.substr(1, content.size()-2) );
-		else if(content[0]=='[' && content[content.size()-1]==']')
-			arrayType( content.substr(1, content.size()-2) );
+		if(content[0]=='{')
+		{
+			if(content[content.size()-1]=='}')
+				hashType( content.substr(1, content.size()-2) );
+			else
+			{	
+				throw NAIL_EXPCEPTION_1("JSON format error");
+			}
+		}
+		else if(content[0]=='[')
+		{
+			if(content[content.size()-1]==']')
+				arrayType( content.substr(1, content.size()-2) );
+			else
+			{
+				throw NAIL_EXPCEPTION_1("JSON format error");
+			}
+		}
 		else
-			m_content = content;
+		{
+			if(content[0]=='"' && content[ content.size()-1 ]=='"')
+				m_content = content.substr(1, content.size()-2);
+			else if(content[0]!='"' && content[ content.size()-1 ]!='"')
+				m_content = content;
+			else
+			{
+				throw NAIL_EXPCEPTION_1("JSON format error");
+			}
+		}
 	}
 
 
 	virtual ~JsonNode()
-	{TRACE_THIS_FUNCTION(ON)
+	{
 
 		if(m_map!=NULL)
 		{
@@ -185,7 +208,10 @@ public:
 	std::string toString()
 	{
 		if( !m_content.empty() )
-			return m_content;
+		{
+			std::string _rc = "\"" + m_content + "\"";
+			return _rc;
+		}
 		
 		
 		if(m_map!=NULL)
@@ -220,6 +246,37 @@ public:
 		}
 
 		return "";
+	}
+
+
+	double toDouble()
+	{
+		if(m_array!=NULL || m_map!=NULL)
+		{
+			throw NAIL_EXPCEPTION_1("this node is an object");
+		}
+
+		return atof(m_content.c_str());
+	}
+
+
+	int toInt()
+	{
+		if(m_array!=NULL || m_map!=NULL)
+		{
+			throw NAIL_EXPCEPTION_1("this node is an object");
+		}
+
+		return atoi(m_content.c_str());
+	}
+
+
+	template<typename T>
+	void operator=(const T& val)
+	{
+		std::stringstream _ss;
+		_ss << val;
+		m_content = _ss.str();
 	}
 };
 

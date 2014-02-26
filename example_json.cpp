@@ -25,6 +25,10 @@ int main(int argc, char** argv)
 	SHOW_VALUES("%s", _jh["B"].toString().c_str() );
 	SHOW_VALUES("%s", _jh["C"]["c1"].toString().c_str()  );
 	SHOW_VALUES("%s", _jh["E"][1].toString().c_str()  );
+
+	_jh["B"] = 68.9996;
+	_jh["C"] = 23;
+
 	SHOW_VALUES("%s", _jh.toString().c_str()  );
 
 	return 0;
