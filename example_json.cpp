@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 
 
 	std::string _json = "{\"A\":\"1\", \"B\":2, \"C\":{\"c1\":\"cone\",\"c2\":\"ctwo\"}, \"D\":\"\", \"E\":[\"z\",\"x\",\"y\"] }";
-	nail::JsonNode _jh( _json );
+	nail::JsonNode _jh;
 
 
 	SHOW_VALUES("%s", _jh["B"].toString().c_str() );
