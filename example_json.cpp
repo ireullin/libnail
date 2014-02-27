@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 	// return 0;
 
 
-	std::string _json = "{\"A\":\"1\", \"B\":2, \"C\":{\"c1\":\"cone\",\"c2\":\"ctwo\"}, \"D\":\"\", \"E\":[\"z\",\"x\",\"y\"] }";
+	std::string _json = "{'A':'1', 'B':2, 'C':{'c1':'cone','c2':'ctwo'}, 'D':'', 'E':['z','x','y'] }";
 	nail::JsonNode _jh;
 
 	nail::readJson(_json, _jh);
