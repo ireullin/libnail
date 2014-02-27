@@ -40,8 +40,8 @@ public:
 
 	std::string toString()
 	{
-		//if(m_type==3)
-		//	return m_val;
+		if(m_type==3)
+			return m_val;
 
 		if(m_type==1)
 		{
@@ -49,7 +49,7 @@ public:
 			_ss << "{";
 			for(int i=0; i<m_array.size(); i++)
 			{
-				_ss << m_array[i]->m_key << ":" << m_array[i]->m_val << ",";
+				_ss << m_array[i]->m_key << ":" << m_array[i]->toString() << ",";
 			}
 
 			std::string _rc = _ss.str();
@@ -106,35 +106,49 @@ public:
 			
 			if( _stack.top()->m_type==1 && _c[i]==':' )
 			{
-				_key = std::string( &_c[_b], i-_b);
-				_b = i+1;
-				continue;
-			}
+				JsonNode* _node = new JsonNode();
+				// _node->m_type = 3;
+				_node->m_key = std::string( &_c[_b], i-_b);
 
 
-			if( _stack.top()->m_type==1 && _c[i]==',' )
-			{
-
-				JsonNode* _node = new JsonNode()
-				_node->m_type = 3;
-				_node->m_key = _key;
-				_node->m_val = std::string( &_c[_b], i-_b);
-				_stack.top()->m_array.push_back(_node);
+				_stack.push(_node);
 
 				_b = i+1;
 				continue;
 			}
 
 
-			if(_c[i]=='}')
+			if( _c[i]==',' )
 			{
-				JsonNode* _node = new JsonNode()
-				_node->m_type = 3;
-				_node->m_key = _key;
-				_node->m_val = std::string( &_c[_b], i-_b);
-				_stack.top()->m_array.push_back(_node);
 
+				JsonNode* _node = _stack.top();
+				_node->m_type = 3;
+				_node->m_val = std::string( &_c[_b], i-_b);
 				_stack.pop();
+
+				_stack.top()->m_array.push_back(_node);
+
+				SHOW_VALUES("key=%s val=%s", _node->m_key.c_str(), _node->toString().c_str());
+
+				_b = i+1;
+				continue;
+			}
+
+
+			if( _c[i]=='}')
+			{
+				JsonNode* _node = _stack.top();
+				_node->m_type = 3;
+				_node->m_val = std::string( &_c[_b], i-_b);
+				_stack.pop();
+				_stack.top()->m_array.push_back(_node);
+
+				JsonNode* _node2 = _stack.top();
+				_stack.pop();
+				_stack.top()->m_array.push_back(_node2);
+
+
+				SHOW_VALUES("key=%s val=%s", _node->m_key.c_str(), _node->toString().c_str());
 
 				_b = i+1;
 				continue;
