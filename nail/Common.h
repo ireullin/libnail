@@ -2,6 +2,4 @@
 #define __NAILCOMMON__
 
 
-
-
 #endif

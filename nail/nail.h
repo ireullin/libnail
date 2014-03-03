@@ -113,9 +113,9 @@ Author: Ireul Lin
 #include "SimplePool.h"
 #include "DateTimeFormat.h"
 #include "DateTime.h"
-#include "Common.h"
 #include "StringPlus.h"
-
+#include "Common.h"
+#include "BuildingTime.h"
 
 
 #endif

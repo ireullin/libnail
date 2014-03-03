@@ -25,7 +25,10 @@ public:
 	/// Partial of milliseconds.
 	int millisecond ()
 	{
-		return (m_timet-floor(m_timet))*1000;
+		double _intpart;
+		double _fractpart = modf(m_timet, &_intpart);
+		double _milsec = (_fractpart+0.0005)*1000.0f; // round off
+		return (int)_milsec;
 	}
 
 	int second()		
@@ -86,6 +89,9 @@ private:
 
 	void init(int year, int month, int day, int hour, int minute, int second, int milsec)
 	{
+		if(milsec>999 || milsec<0)
+			throw NAIL_EXPCEPTION_1("milsec can't bigger than 1000");
+
 		m_milsec = milsec;
 
 		TM _tm;
@@ -104,7 +110,7 @@ public:
 	{init(year, month, day, hour, minute, second, milsec);}
 
 
-	DateTime(DateTime dt, int hour, int minute, int second, int milsec=0)
+	DateTime(DateTime& dt, int hour, int minute, int second, int milsec=0)
 	{init(dt.year(), dt.month(), dt.day(), hour, minute, second, milsec);}
 
 
@@ -114,9 +120,11 @@ public:
 
 	DateTime(double totalSecond)
 	{
-		m_timet = floor(totalSecond);
-		m_milsec = (totalSecond-m_timet)*1000;
-		
+		double _intpart;
+		double _fractpart = modf(totalSecond, &_intpart);
+
+		m_timet = (int)_intpart;
+		m_milsec = (_fractpart+0.0005)*1000.0f; // round off
 	}
 	
 
@@ -147,7 +155,7 @@ public:
 	
 	/// Total seconds from 1900/1/1
 	double totalSecond()	
-	{return (double)m_timet + (double)millisecond()/1000;}
+	{return (double)m_timet + (double)millisecond()/1000.0f;}
 	
 	/// Partial of milliseconds.
 	int millisecond ()		{return m_milsec;}
@@ -214,8 +222,7 @@ public:
 	DateTimeDiff operator-(DateTime& dt)
 	{
 		double _diff = this->totalSecond() - dt.totalSecond();
-		DateTimeDiff _dateTimeDiff( fabs(_diff) );
-		return _dateTimeDiff;
+		return DateTimeDiff( fabs(_diff) );
 	}
 
 	bool operator<(const DateTime& dt) const
