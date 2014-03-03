@@ -13,19 +13,24 @@ class DateTimeDiff
 {
 private:
 	friend class DateTime;
-	time_t m_timet;
+	double m_timet;
 	
 	/// Only be constructed by DataTime.
-	DateTimeDiff(time_t timet)
+	DateTimeDiff(double timet)
+		:m_timet(timet)
 	{
-		m_timet		= timet;
 	}
 
 public:
-	/// Partial of seconds.
+	/// Partial of milliseconds.
+	int millisecond ()
+	{
+		return (m_timet-floor(m_timet))*1000;
+	}
+
 	int second()		
 	{
-		int _sur1	= m_timet % (24*60*60);
+		int _sur1	= (int)floor(m_timet) % (24*60*60);
 		int _sur2	= _sur1 % (60*60);
 		int _sec	= _sur2 % (60);
 		return _sec;
@@ -34,7 +39,7 @@ public:
 	/// Partial of Minutes.
 	int minute()		
 	{
-		int _sur1	= m_timet % (24*60*60);
+		int _sur1	= (int)floor(m_timet) % (24*60*60);
 		int _sur2	= _sur1 % (60*60);
 		int _min	= _sur2 / (60);
 		return _min;
@@ -43,7 +48,7 @@ public:
 	/// Partial of Hours.
 	int hour()			
 	{
-		int _sur1	= m_timet % (24*60*60);
+		int _sur1	= (int)floor(m_timet) % (24*60*60);
 		int _hour	= _sur1 / (60*60);
 		return _hour;
 	}
@@ -51,21 +56,21 @@ public:
 	/// Partial of Days.
 	int day()
 	{
-		int _day	= m_timet / (24*60*60);
+		int _day	= (int)floor(m_timet) / (24*60*60);
 		return _day;
 	}
 	
 	/// Tatol seconds.
-	int tatolSecond()	{return (int)m_timet;}
+	double tatolSecond(){return m_timet;}
 	
 	/// Total minutes.
-	double tatolMinute(){return (double)m_timet/(60);}
+	double tatolMinute(){return m_timet/60;}
 	
 	/// Total hours.
-	double tatolHour()	{return (double)m_timet/(60*60);}
+	double tatolHour()	{return m_timet/(60*60);}
 	
 	/// Total days.
-	double tatolDay()	{return (double)m_timet/(60*60*24);}
+	double tatolDay()	{return m_timet/(60*60*24);}
 };
 
 
@@ -73,13 +78,15 @@ class DateTime
 {
 private:
 	typedef struct tm TM;
+	
 	time_t m_timet;
-	TM* getTm(){return localtime(&m_timet);}
 	int m_milsec;
+	
+	TM* getTm(){return localtime(&m_timet);}
 
-	void init(int year, int month, int day, int hour, int minute, int second)
+	void init(int year, int month, int day, int hour, int minute, int second, int milsec)
 	{
-		m_milsec = 0;
+		m_milsec = milsec;
 
 		TM _tm;
 		memset(&_tm, 0, sizeof(TM));
@@ -93,22 +100,23 @@ private:
 	}
 
 public:
-	DateTime(int year, int month, int day, int hour, int minute, int second)
-	{init(year, month, day, hour, minute, second);}
+	DateTime(int year, int month, int day, int hour, int minute, int second, int milsec=0)
+	{init(year, month, day, hour, minute, second, milsec);}
 
 
-	DateTime(DateTime dt, int hour, int minute, int second)
-	{init(dt.year(), dt.month(), dt.day(), hour, minute,second);}
+	DateTime(DateTime dt, int hour, int minute, int second, int milsec=0)
+	{init(dt.year(), dt.month(), dt.day(), hour, minute, second, milsec);}
 
 
 	DateTime(int year, int month, int day)
-	{init(year, month, day, 0,0,0);}
+	{init(year, month, day, 0,0,0,0);}
 
 
-	DateTime(time_t TotalSecond)
+	DateTime(double totalSecond)
 	{
-		m_milsec = 0;
-		m_timet =TotalSecond;
+		m_timet = floor(totalSecond);
+		m_milsec = (totalSecond-m_timet)*1000;
+		
 	}
 	
 
@@ -138,7 +146,8 @@ public:
 	void addDay(int day)	{addHour(day*24);}
 	
 	/// Total seconds from 1900/1/1
-	time_t totalSecond()	{return m_timet;}
+	double totalSecond()	
+	{return (double)m_timet + (double)millisecond()/1000;}
 	
 	/// Partial of milliseconds.
 	int millisecond ()		{return m_milsec;}
@@ -204,8 +213,8 @@ public:
 	/// Time difference with two DateTimes.
 	DateTimeDiff operator-(DateTime& dt)
 	{
-		time_t _diff = this->totalSecond() - dt.totalSecond();
-		DateTimeDiff _dateTimeDiff( abs(_diff) );
+		double _diff = this->totalSecond() - dt.totalSecond();
+		DateTimeDiff _dateTimeDiff( fabs(_diff) );
 		return _dateTimeDiff;
 	}
 
