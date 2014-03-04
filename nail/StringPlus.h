@@ -21,19 +21,19 @@ namespace StringPlus{
 	}
 
 	/// Convert an unprintable character to \xXX if it was involved in a string.
-	std::string toPrintable(const std::string& value)
+	std::string toPrintable(const char* data, int size, const std::string& prefix="\\x")
 	{
 		std::stringstream _ss;
-		for(size_t i=0; i<value.size(); i++)
+		for(int i=0; i<size; i++)
 		{
-			if(isprint(value[i]))	_ss << value[i];
-			else					_ss << "\\x" << std::setfill('0') << std::setw(2) << std::setiosflags(std::ios::right) << std::hex << static_cast<int>(value[i]); 
+			if(isprint(data[i]))	_ss << data[i];
+			else					_ss << prefix << std::setfill('0') << std::setw(2) << std::setiosflags(std::ios::right) << std::hex << static_cast<int>(data[i]); 
 		}
 		return _ss.str();
 	}
 
 
-	std::string toBinaryString(const char* data, int size, std::string split=",")
+	std::string toBinaryString(const char* data, int size, const std::string& split=",")
 	{
 		std::stringstream _ss;
 		for(int i=0; i<size; i++)
@@ -49,12 +49,12 @@ namespace StringPlus{
 	}
 
 
-	std::string toHexString(const char* data, int size, std::string header="0x", std::string split=" ")
+	std::string toHexString(const char* data, int size, const std::string& prefix="\\x", const std::string& split="")
 	{
 		std::stringstream _ss;
 		for(int i=0; i<size; i++)
 		{
-			_ss << header << std::setfill('0') << std::setw(2) << std::hex << static_cast<unsigned short>(static_cast<unsigned char>(data[i]));
+			_ss << prefix << std::setfill('0') << std::setw(2) << std::hex << static_cast<unsigned short>(static_cast<unsigned char>(data[i]));
 			if(i!=size-1) _ss << split;
 		}
 		return _ss.str();
