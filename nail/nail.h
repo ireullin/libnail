@@ -102,7 +102,6 @@ Author: Ireul Lin
 #include "Exception.h"
 #include "Trace.h"
 #include "TypeWrapper.h"
-#include "ExtendItem.h"
 #include "Runable.h"
 #include "Signal.h"
 #include "Thread.h"
@@ -115,6 +114,7 @@ Author: Ireul Lin
 #include "DateTimeFormat.h"
 #include "DateTime.h"
 #include "StringPlus.h"
+#include "ExtendItem.h"
 #include "BuildingTime.h"
 
 
