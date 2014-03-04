@@ -68,20 +68,14 @@ public:
 			throw NAIL_EXPCEPTION_1("doesn't contain the key");
 
 		if(i==m_vec.size()-1)
-		{
-			nail::ExtendItem _rc1("");
-			return _rc1;
-		}
+			return nail::ExtendItem("");
 
 		std::string _next = m_vec[i+1];
 		if(_next[0]=='-')
-		{
-			nail::ExtendItem _rc2("");
-			return _rc2;
-		}
+			return nail::ExtendItem("");
 		
-		nail::ExtendItem _rc3(_next);
-		return _rc3;
+		nail::ExtendItem _item(_next);
+		return _item;
 	}
 
 };

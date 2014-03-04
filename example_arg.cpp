@@ -2,6 +2,8 @@
 
 the program result.
 
+execute ./example -ip 192.168.0.1 -port 70 -l pthread --release -ld
+
 Enter function main
 example_arg.cpp(40) shows "./example"
 example_arg.cpp(40) shows "-ip"
