@@ -3,12 +3,6 @@
 
 namespace nail{
 
-template <typename T>
-struct TypeWrapper 
-{ 
-   typedef T type; 
-}; 
-
 
 class IExtendItem
 {

@@ -101,6 +101,7 @@ Author: Ireul Lin
 // nail
 #include "Exception.h"
 #include "Trace.h"
+#include "Common.h"
 #include "ExtendItem.h"
 #include "Runable.h"
 #include "Signal.h"
@@ -114,7 +115,6 @@ Author: Ireul Lin
 #include "DateTimeFormat.h"
 #include "DateTime.h"
 #include "StringPlus.h"
-#include "Common.h"
 #include "BuildingTime.h"
 
 
