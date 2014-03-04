@@ -18,12 +18,7 @@ Leave function main
 int main(int argc, char** argv)
 {TRACE_THIS_FUNCTION(ON)
 
-	nail::ExtendItem _item1("  adfdDDDDbbbe7482DeSSs ");
-
-	SHOW_VALUES("%s", _item1.trimRight().padLeft(50,'-').toLower().c_str());
-	SHOW_VALUES("%s", _item1.c_str());
-	SHOW_VALUES("%d", _item1.toInt());
-	SHOW_VALUES("%f", _item1.toDouble());
+	SHOW_VALUES("%s", nail::buildingTime().toString().c_str() );
 
 	return 0;
 }

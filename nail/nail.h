@@ -115,6 +115,7 @@ Author: Ireul Lin
 #include "DateTime.h"
 #include "StringPlus.h"
 #include "ExtendItem.h"
+#include "Split.h"
 #include "BuildingTime.h"
 
 

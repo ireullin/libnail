@@ -53,6 +53,7 @@ public:
 	virtual const std::string& toString() const
 	{return m_buff;}
 
+	/// calling this method have to attend the instance whether existing.
 	virtual const char* c_str() const
 	{return m_buff.c_str();}
 

@@ -165,42 +165,6 @@ namespace StringPlus{
 	}
 
 
-	/// Split a string with a char.
-	class Split
-	{
-	private:
-		Split(const Split& r);
-		Split& operator=(const Split& r);
-
-		std::vector<std::string> m_vec;
-
-	public:
-		Split(const std::string& str, char symbol)
-		{
-			const char* _buff = str.c_str();
-			int _offset=0;
-			for(size_t i=0; i<str.size(); i++)
-			{
-				if(_buff[i]!=symbol)
-					continue;
-
-				std::string _str(&_buff[_offset],  i-_offset);
-				m_vec.push_back(_str);
-				_offset = i+1;
-			}
-
-			std::string _str(&_buff[_offset]);
-			m_vec.push_back(_str);
-		}
-
-		size_t size()
-		{return m_vec.size();}
-
-		std::string& operator[](int i)
-		{return m_vec[i];}
-	};
-
-
 	/// compare without case of words.
 	/// it's a funtor, don't implement it.
 	class InsensitiveCompare

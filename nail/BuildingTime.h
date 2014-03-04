@@ -39,11 +39,11 @@ public:
 		nail::StringPlus::Split _spDate(__DATE__, ' ');
 		for(int i=0; i<_spDate.size(); i++)
 		{
-			if(_spDate[i]=="")
+			if(_spDate[i].toString()=="")
 				continue;
 
-			if(_spDate[i].size()==3)
-				_v.push_back(getMonth( _spDate[i] ));
+			if(_spDate[i].toString().size()==3)
+				_v.push_back(getMonth( _spDate[i].toString() ));
 			else
 				_v.push_back(atoi(_spDate[i].c_str()));
 		}
@@ -51,7 +51,7 @@ public:
 		nail::StringPlus::Split _spTime(__TIME__, ':');
 		for(int i=0; i<_spTime.size(); i++)
 		{
-			if(_spTime[i]=="")
+			if(_spTime[i].toString()=="")
 				continue;
 
 			_v.push_back(atoi(_spTime[i].c_str()));
