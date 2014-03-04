@@ -39,14 +39,6 @@ public:
 		m_buff = _ss.str();
 	}
 
-	template <typename X>
-	ExtendItem& operator<< (X& x)
-	{
-		std::stringstream _ss;
-		_ss << x;
-		m_buff = _ss.str();
-	}
-
 	virtual ~ExtendItem()
 	{}
 
