@@ -58,6 +58,12 @@ public:
 	virtual long toLong()
 	{return atol(m_buff.c_str());}
 
+	virtual bool toBoolean()
+	{
+		std::string _tmp = nail::StringPlus::trim(m_buff);
+		return nail::StringPlus::toLower(_tmp)=="true";
+	}
+
 	nail::ExtendItem padLeft(int length , char symbol)
 	{
 		std::string _tmp = nail::StringPlus::padLeft(m_buff, length, symbol);
