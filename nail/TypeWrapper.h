@@ -3,8 +3,8 @@ Only for impelmenting that declare friend class dynamic.
 
 Author: Ireul Lin
 ***************************************************************************************************************/
-#ifndef __NAILCOMMON__
-#define __NAILCOMMON__
+#ifndef __NAILTYPEWRAPPER__
+#define __NAILTYPEWRAPPER__
 
 namespace nail{
 

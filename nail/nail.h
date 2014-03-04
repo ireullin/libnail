@@ -101,7 +101,7 @@ Author: Ireul Lin
 // nail
 #include "Exception.h"
 #include "Trace.h"
-#include "Common.h"
+#include "TypeWrapper.h"
 #include "ExtendItem.h"
 #include "Runable.h"
 #include "Signal.h"
