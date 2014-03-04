@@ -1,3 +1,3 @@
 
 rm -rf ./example
-g++ -o example example_datetime.cpp -lpthread -lrt -DNAIL_TRACE_ENABLE
+g++ -o example example_typewrapper.cpp -lpthread -lrt -DNAIL_TRACE_ENABLE
