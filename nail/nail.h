@@ -97,6 +97,8 @@ Author: Ireul Lin
 #include <sys/timeb.h>
 #include <pthread.h>
 #include <errno.h>
+#include <sys/stat.h>
+#include <dirent.h>
 
 // nail
 #include "Exception.h"
@@ -119,5 +121,6 @@ Author: Ireul Lin
 #include "BuildingTime.h"
 #include "Arg.h"
 #include "Env.h"
+#include "FileSystem.h"
 
 #endif
