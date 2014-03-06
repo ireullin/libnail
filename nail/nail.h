@@ -82,12 +82,14 @@ Author: Ireul Lin
 #include <map>
 #include <set>
 #include <deque>
+#include <stack>
 #include <exception>
 #include <queue>
 #include <memory>
 #include <tr1/memory>
 #include <list>
 #include <iomanip>
+#include <iterator>
 
 // developing os are unbuntu 12.04
 #include <unistd.h>

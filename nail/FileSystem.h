@@ -7,17 +7,15 @@ Author: Ireul Lin
 #define __NAILFILESYSTEM__
 
 namespace nail{
-namespace FileSystem{
 
-
-class Info
+class FileSystem
 {
 private:
 	std::string m_name;
 	static const char SPLIT_CHAR;
 
 public:
-	Info(const std::string& name)
+	FileSystem(const std::string& name)
 		:m_name(name)
 	{
 	}
@@ -81,7 +79,7 @@ public:
 		else						return m_name.substr(0, _pos);
 	}
 
-	nail::FileSystem::Info join(const std::string& path)
+	nail::FileSystem join(const std::string& path)
 	{
 		std::stringstream _newpath;
 		
@@ -97,10 +95,10 @@ public:
 		else
 			_newpath << m_name << path.substr(1);
 
-		return nail::FileSystem::Info( _newpath.str() );
+		return nail::FileSystem( _newpath.str() );
 	}
 
-	nail::FileSystem::Info join(nail::FileSystem::Info& info)
+	nail::FileSystem join(nail::FileSystem& info)
 	{
 		join( info.m_name );
 	}
@@ -124,15 +122,75 @@ public:
 				)
 				continue;
 
-			nail::FileSystem::Info _info = this->join(std::string(_dirent->d_name));
+			nail::FileSystem _info = this->join(std::string(_dirent->d_name));
 			t.push_back(_info);
 		}
 	}
 
+	void writeAll(const std::string& content, bool append = true)
+	{
+		std::ofstream _ofs(m_name.c_str(), append? std::ofstream::app : std::ofstream::trunc );
+		if(!_ofs)
+			throw NAIL_EXPCEPTION_1("written failed");
+
+		_ofs << content;
+		_ofs.close();
+	}
+
+	template<typename T>
+	void writeLines(T& t, bool append = true)
+	{
+		std::ofstream _ofs(m_name.c_str(), append? std::ofstream::app : std::ofstream::trunc );
+		if(!_ofs)
+			throw NAIL_EXPCEPTION_1("written failed");
+
+		for(typename T::iterator it=t.begin(); it!=t.end(); ++it)
+		{
+			_ofs << (*it);
+			if(std::distance(it,t.end()) != 1 )
+				_ofs << "\n";
+		}
+
+		_ofs.close();
+	}
+
+	std::string readAll()
+	{
+		std::ifstream _ifs(m_name.c_str());
+		if(!_ifs)
+			throw NAIL_EXPCEPTION_1("read failed");
+
+		_ifs.seekg (0, _ifs.end);
+    	int _length = _ifs.tellg();
+    	_ifs.seekg (0, _ifs.beg);
+
+    	char* _buff = new char[_length];
+    	_ifs.read(_buff, _length);
+		_ifs.close();
+
+		std::string _rc(_buff, _length);
+		delete[] _buff;
+		return _rc;
+	}
+
+	template<typename T>
+	void readLines(T& t)
+	{
+		std::ifstream _ifs(m_name.c_str());
+		if(!_ifs)
+			throw NAIL_EXPCEPTION_1("read failed");
+
+		std::string _buff;
+		while(std::getline(_ifs, _buff))
+		{
+			t.push_back(_buff);
+		}
+
+		_ifs.close();
+	}
 };
 
-const char Info::SPLIT_CHAR = '/';
+const char FileSystem::SPLIT_CHAR = '/';
 
-}
 }
 #endif
